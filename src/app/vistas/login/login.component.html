@@ -1,0 +1,60 @@
+<ion-content>
+  <div class="login-container">
+    <div class="form-container">
+      <h2>Convertify</h2>
+      <p>Accede a tu cuenta</p>
+
+      <form #loginForm="ngForm">
+        <!-- Input Usuario -->
+        <ion-item>
+          <ion-input 
+            name="usuario" 
+            placeholder="Usuario" 
+            required 
+            minlength="4" 
+            maxlength="16"
+            [(ngModel)]="usuario"
+            #usuarioInput="ngModel">
+          </ion-input>
+        </ion-item>
+        <div *ngIf="usuarioInput.invalid && usuarioInput.touched" class="error-message">
+          El usuario debe tener entre 4 y 16 caracteres.
+        </div>
+        
+        <!-- Input Contraseña -->
+        <ion-item>
+          <ion-input 
+            [type]="passwordType"
+            name="password" 
+            placeholder="Contraseña" 
+            required 
+            minlength="8" 
+            maxlength="16"
+            [(ngModel)]="password"
+            #passwordInput="ngModel">
+          </ion-input>
+          <ion-icon 
+            slot="end" 
+            name="eye-outline" 
+            (click)="togglePasswordVisibility()">
+          </ion-icon>
+        </ion-item>
+        <div *ngIf="passwordInput.invalid && passwordInput.touched" class="error-message">
+          La contraseña debe tener entre 8 y 16 caracteres.
+        </div>
+        
+        <!-- Enlace de Olvidaste tu contraseña -->
+        <div class="actions">
+          <a href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <!-- Botón corregido SIN disabled para que mande alert si está vacío -->
+        <ion-button expand="full" color="primary" (click)="onSubmit()">
+          Iniciar Sesión
+        </ion-button>
+      </form>
+
+      <p class="signup">¿No tienes cuenta? <a routerLink="/register">Regístrate</a></p>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="titulo-centrado">
+      {{ idiomaSeleccionado === 'es' ? configuracion_espanol : configuracion_ingles }}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToMainMenu()">
+        <ion-icon class="toolbar-button" slot="icon-only" name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="contenedor-titulo">
+    <ion-list-header>
+      {{ idiomaSeleccionado === 'es' ? lenguaje_espanol : lenguaje_ingles }}
+    </ion-list-header>
+  </div>
+
+  <ion-button class="boton-idioma espana" fill="clear" expand="full" (click)="cambiarIdioma('es')">ESPAÑOL</ion-button>
+  <ion-button class="boton-idioma usa" fill="clear" expand="full" (click)="cambiarIdioma('en')">INGLÉS</ion-button>   
+</ion-content>

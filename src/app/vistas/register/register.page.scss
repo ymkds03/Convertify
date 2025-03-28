@@ -1,0 +1,141 @@
+ion-content {
+  --background: #87CEEB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 16px; /* Añadido padding para márgenes en pantallas pequeñas */
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.auth-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño */
+}
+
+.app-title {
+  font-size: 1.8rem; /* Usar unidades relativas para mejor adaptabilidad */
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+.subtitle {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.input-field {
+  margin-bottom: 15px;
+  border-radius: 4px;
+  --background: #fff;
+  --border-color: #ccc;
+  --border-width: 1px;
+  --border-style: solid;
+  --border-radius: 4px;
+  --padding-start: 10px;
+}
+
+.auth-button {
+  --background: #4285f4;
+  --border-radius: 4px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  height: 44px;
+  font-size: 1rem; /* Asegura que el texto sea legible en pantallas más pequeñas */
+}
+
+.auth-link {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #333;
+}
+
+.auth-link a {
+  color:#94d1fd;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+ion-input {
+  --padding-start: 8px;
+  --placeholder-color: #999;
+  --placeholder-opacity: 1;
+}
+
+ion-icon {
+  color: #999;
+  font-size: 22px;
+  margin-right: 5px;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .auth-card {
+    padding: 20px;
+    max-width: 100%;
+    margin-left: 10px; /* Añadido margen en móviles */
+    margin-right: 10px; /* Añadido margen en móviles */
+  }
+
+  .app-title {
+    font-size: 1.6rem; /* Ajusta el tamaño en pantallas más pequeñas */
+  }
+
+  .subtitle {
+    font-size: 1rem; /* Reduce el tamaño del subtítulo */
+  }
+
+  .auth-button {
+    font-size: 0.9rem; /* Ajusta el tamaño del texto del botón */
+  }
+
+  .auth-link {
+    font-size: 13px; /* Reduce el tamaño de fuente del enlace */
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 15px;
+    margin-left: 10px; /* Mantiene el margen en pantallas más pequeñas */
+    margin-right: 10px; /* Mantiene el margen en pantallas más pequeñas */
+  }
+
+  .app-title {
+    font-size: 1.4rem; /* Más pequeño en pantallas muy pequeñas */
+  }
+
+  .subtitle {
+    font-size: 0.9rem; /* Más pequeño en pantallas muy pequeñas */
+  }
+
+  .auth-button {
+    font-size: 0.8rem; /* Ajusta el tamaño del botón para pantallas pequeñas */
+    height: 40px; /* Reduce el tamaño del botón */
+  }
+
+  .auth-link {
+    font-size: 12px; /* Aún más pequeño en pantallas más pequeñas */
+  }
+}

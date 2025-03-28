@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="titulo-menu">{{ idiomaSeleccionado === 'es' ? peso_espanol : peso_ingles }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToMainMenu()">
+        <ion-icon class="toolbar-button" slot="icon-only" name="home"></ion-icon>
+      </ion-button>
+      <ion-button (click)="goBack()">
+        <ion-icon class="toolbar-button" slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="form-wrapper">
+    <div class="form-container">
+      <ion-list lines="none">
+        <!-- Entrada de cantidad -->
+        <ion-item class="custom-item">
+          <ion-label position="stacked">{{ idiomaSeleccionado === 'es' ? 'Cantidad a convertir' : 'Amount to Convert' }}</ion-label>
+          <ion-input type="number" [(ngModel)]="cantidad" (ionInput)="convertir()" [placeholder]="idiomaSeleccionado === 'es' ? 'Ingresa cantidad' : 'Insert quantity'"></ion-input>
+        </ion-item>
+
+        <!-- Unidad origen -->
+        <ion-item class="custom-item">
+          <ion-label position="stacked">{{ idiomaSeleccionado === 'es' ? 'Desde' : 'From' }}</ion-label>
+          <ion-select [(ngModel)]="unidadSeleccionadaOrigen" (ionChange)="convertir()">
+            <ion-select-option *ngFor="let unidad of unidades" [value]="unidad.value">{{ unidad.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Error -->
+        <div *ngIf="mensajeError" class="error-message">
+          {{ mensajeError }}
+        </div>
+
+        <!-- Unidad destino -->
+        <ion-item class="custom-item">
+          <ion-label position="stacked">{{ idiomaSeleccionado === 'es' ? 'Hacia' : 'To' }}</ion-label>
+          <ion-select [(ngModel)]="unidadSeleccionadaDestino" (ionChange)="convertir()">
+            <ion-select-option *ngFor="let unidad of unidades" [value]="unidad.value">{{ unidad.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Resultado -->
+        <ion-item class="custom-item">
+          <ion-input 
+            class="resultado-input"
+            type="text"
+            [value]="resultadoFormateado ? resultadoFormateado + ' ' + unidadSeleccionadaDestino : ''"
+            [placeholder]="idiomaSeleccionado === 'es' ? 'Resultado' : 'Result'"
+            readonly>
+          </ion-input>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

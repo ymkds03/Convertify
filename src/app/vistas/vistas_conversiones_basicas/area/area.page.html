@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="titulo-menu">{{ textos.area }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToMainMenu()">
+        <ion-icon class="toolbar-button" slot="icon-only" name="home"></ion-icon>
+      </ion-button>
+      <ion-button (click)="goBack()">
+        <ion-icon class="toolbar-button" slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="form-wrapper">
+    <div class="form-container">
+      <ion-list lines="none">
+        <!-- Entrada de cantidad -->
+        <ion-item class="custom-item">
+          <ion-label position="stacked">{{ textos.ingresaCantidad }}</ion-label>
+          <ion-input type="number" [(ngModel)]="cantidad" (ionInput)="convertir()" [placeholder]="textos.ingresaCantidad"></ion-input>
+        </ion-item>
+
+        <!-- Unidad origen -->
+        <ion-item class="custom-item">
+          <ion-label position="stacked">{{ textos.convertirDe }}</ion-label>
+          <ion-select [(ngModel)]="unidadSeleccionadaOrigen" (ionChange)="convertir()">
+            <ion-select-option *ngFor="let unidad of unidades" [value]="unidad.value">{{ unidad.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Unidad destino -->
+        <ion-item class="custom-item">
+          <ion-label position="stacked">{{ textos.a }}</ion-label>
+          <ion-select [(ngModel)]="unidadSeleccionadaDestino" (ionChange)="convertir()">
+            <ion-select-option *ngFor="let unidad of unidades" [value]="unidad.value">{{ unidad.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Error -->
+        <div *ngIf="mensajeError" class="error-message">
+          {{ mensajeError }}
+        </div>
+
+        <!-- Resultado -->
+        <ion-item class="custom-item">
+          <ion-input 
+            class="resultado-input"
+            type="text"
+            [value]="resultadoFormateado ? resultadoFormateado + ' ' + unidadSeleccionadaDestino : ''"
+            [placeholder]="textos.resultado"
+            readonly>
+          </ion-input>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,83 @@
+// Colores
+$color-primary: var(--ion-color-primary);
+$color-hover: #0056b3;
+$color-disabled: lightgray;
+
+// Mixin para responsividad
+@mixin respond-to($media) {
+  @if $media == 'mobile' {
+    @media (max-width: 768px) { @content; }
+  } @else if $media == 'tablet' {
+    @media (min-width: 769px) and (max-width: 1024px) { @content; }
+  } @else if $media == 'desktop' {
+    @media (min-width: 1025px) { @content; }
+  }
+}
+
+// Estilos del botón
+.boton-opcion {
+  text-transform: capitalize; // 🔥 Solo la primera letra en mayúscula
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  max-width: 250px; // 🔥 Límite de ancho para evitar que se alargue en web
+  margin: 10px auto; // 🔥 Centrar los botones en web
+
+  // Icono más grande
+  ion-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+
+  // Efecto hover
+  &:hover {
+    background-color: $color-hover;
+    transform: scale(1.05);
+  }
+
+  // Efecto cuando es presionado
+  &:active {
+    transform: scale(0.98);
+  }
+
+  // Cuando está deshabilitado
+  &[disabled] {
+    background-color: $color-disabled;
+    color: gray;
+    cursor: not-allowed;
+  }
+}
+
+// 📌 Ajustes específicos para cada tamaño de pantalla
+@include respond-to('mobile') {
+  .boton-opcion {
+    font-size: 1rem;
+    padding: 12px;
+    max-width: 100%; // 🔥 En móviles, los botones ocupan el ancho completo
+    height: 100%;
+  }
+}
+
+@include respond-to('tablet') {
+  .boton-opcion {
+    font-size: 1.1rem;
+    padding: 14px;
+    max-width: 100%;
+    height: 100%;
+  }
+}
+
+@include respond-to('desktop') {
+  .boton-opcion {
+    font-size: 1.2rem;
+    max-width: 300px; // 🔥 Más compacto en pantallas grandes
+    height: 100px;
+  }
+}

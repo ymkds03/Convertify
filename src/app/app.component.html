@@ -1,0 +1,47 @@
+<ion-app>
+  <!-- El split-pane se elimina para que el menú esté completamente oculto por defecto -->
+  <ion-menu contentId="main-content" type="overlay" side="start">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Inicio</ion-title>
+        <ion-buttons slot="end">
+          <ion-menu-toggle>
+            <ion-button>
+              <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+          </ion-menu-toggle>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list id="inbox-list">
+        <ion-list-header>Convertify</ion-list-header>
+        <ion-note>Versión 1.0.4</ion-note>
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+          <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+            <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+            <ion-label>{{ p.title }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+      <ion-list id="labels-list">
+        <ion-list-header></ion-list-header>
+        <ion-item *ngFor="let label of labels" lines="none">
+          <ion-icon aria-hidden="true" slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
+          <ion-label>{{ label }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <!-- Contenido principal con el botón de hamburguesa -->
+  <div class="ion-page" id="main-content">
+    
+    <ion-content>
+      <!-- Aquí va el contenido principal de tu aplicación -->
+      <ion-router-outlet></ion-router-outlet>
+    </ion-content>
+  </div>
+</ion-app>
